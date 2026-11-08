@@ -9,20 +9,15 @@
 <style>
 :root{
   --cadet:#25344F; --slate:#617891; --tan:#D5B893; --coffee:#6F4D38; --mort:#632024;
-  --paper:rgba(246,238,224,.9);
-  --ratio-w:3; --ratio-h:4; /* shape of ONE flipbook page: change if your images are landscape */
+  --paper:rgba(252,248,238,.94);
+  --ratio-w:3; --ratio-h:4; /* shape of ONE study guide page: change if your images are landscape */
   --leaf:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpolygon points='3,29 7.2,21.2 25.2,3.2 28.8,6.8 10.8,24.8' fill='%23000' stroke='%23fff' stroke-width='0.8' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 *{box-sizing:border-box}
 html,body,a,button,summary,select,input,textarea,label,.tile{cursor:var(--leaf) 3 29,auto}
 body{
   margin:0;color:#2a2018;font:17px/1.7 "Jost",system-ui,sans-serif;min-height:100vh;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520' viewBox='0 0 520 520' fill='none' stroke='%23D5B893' stroke-opacity='.28' stroke-width='2'%3E%3Cpath d='M260 0V520'/%3E%3Cpath d='M260 60C190 90 140 130 90 190M260 60C330 90 380 130 430 190M260 160C190 190 120 250 60 330M260 160C330 190 400 250 460 330M260 270C200 300 140 360 100 440M260 270C320 300 380 360 420 440M260 380C220 410 180 450 150 520M260 380C300 410 340 450 370 520'/%3E%3Cpath d='M90 190C70 210 40 240 0 270M430 190C450 210 480 240 520 270M60 330C40 350 20 380 0 410M460 330C480 350 500 380 520 410'/%3E%3C/svg%3E"),
-    radial-gradient(ellipse at 15% 0%,rgba(232,150,100,.55),transparent 55%),
-    radial-gradient(ellipse at 90% 40%,rgba(213,184,147,.5),transparent 55%),
-    linear-gradient(160deg,#4d6783,#617891 45%,#7d8fa0);
-  background-attachment:fixed;
+  background:#efe6d6 url("images/background.png") repeat;
 }
 h1,h2,h3,.serif{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;line-height:1.15}
 header{background:rgba(37,52,79,.96);color:var(--tan);text-align:center;border-bottom:3px solid var(--mort)}
@@ -44,8 +39,9 @@ section{display:none}section.on{display:block;animation:rise .5s ease}
 .lead{font-size:1.1rem}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.1rem;margin-top:1.4rem}
 .tile{display:block;text-decoration:none;color:#f1e2c6;background:var(--cadet);padding:1.5rem 1.2rem;border-left:6px solid var(--mort);transition:transform .2s,background .2s}
-.tile:nth-child(even){background:var(--coffee)}
-.tile:hover{transform:translate(-3px,-3px);background:var(--mort)}
+.tile:nth-child(3n+2){background:var(--coffee)}
+.tile:nth-child(3n){background:var(--mort);border-left-color:var(--tan)}
+.tile:hover{transform:translate(-3px,-3px);filter:brightness(1.25)}
 .tile b{display:block;font:700 1.55rem "Cormorant Garamond",serif;color:var(--tan)}
 .tile span{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase}
 details{border-top:1px solid rgba(111,77,56,.5);padding:.2rem 0}
@@ -55,16 +51,14 @@ summary::before{content:"§ ";color:var(--mort)}
 summary::-webkit-details-marker{display:none}
 details ul{margin:.1rem 0 1rem;padding-left:1.3rem}details li{margin:.25rem 0}
 a.back{display:inline-block;color:var(--mort);margin-bottom:1rem;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase}
-/* flipbook */
-.book{position:relative;width:min(100%,900px);margin:1rem auto;aspect-ratio:calc(var(--ratio-w)*2)/var(--ratio-h);perspective:2400px;background:rgba(37,52,79,.18)}
-.pg,.flip i{position:absolute;top:0;width:50%;height:100%;background:#f3e9d6 center/contain no-repeat;box-shadow:0 0 0 1px rgba(111,77,56,.35)}
-.pg.l{left:0}.pg.r{left:50%}.pg.empty{background:transparent;box-shadow:none}
-.flip{position:absolute;top:0;width:50%;height:100%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.5,.1,.3,1);z-index:3}
-.flip i{left:0;backface-visibility:hidden}.flip .fk{transform:rotateY(180deg)}
-.flip.fr{left:50%;transform-origin:left}.flip.fl{left:0;transform-origin:right}
-.ctl{display:flex;justify-content:center;align-items:center;gap:1.5rem}
-.ctl button,.btn{background:var(--cadet);color:var(--tan);border:0;padding:.7rem 1.6rem;font:500 .8rem "Jost";letter-spacing:.2em;text-transform:uppercase}
-.ctl button:hover,.btn:hover{background:var(--mort)}.ctl button:disabled{opacity:.35}
+.doc{background:rgba(37,52,79,.35);padding:1.5rem;display:flex;flex-direction:column;align-items:center;gap:1.6rem;border:1px solid var(--coffee)}
+.dp{margin:0;width:min(100%,760px);background:#fbf6ea;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.dp img{display:block;width:100%;height:auto}.dp .ph{display:none}
+.dp.miss .ph{display:grid;place-content:center;text-align:center;aspect-ratio:var(--ratio-w)/var(--ratio-h);border:2px dashed var(--coffee);margin:.6rem;color:var(--coffee);font:700 1.8rem "Cormorant Garamond",serif}
+.dp .ph small{font:400 .8rem "Jost";letter-spacing:.05em}
+.dp figcaption{text-align:center;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;padding:.45rem;color:var(--coffee)}
+.btn{background:var(--cadet);color:var(--tan);border:0;padding:.7rem 1.6rem;font:500 .8rem "Jost";letter-spacing:.2em;text-transform:uppercase}
+.btn:hover{background:var(--mort)}
 .note{text-align:center;padding:2.5rem 1rem;border:1px dashed var(--coffee)}
 code{background:rgba(37,52,79,.12);padding:.1em .4em}
 /* forms */
@@ -73,17 +67,15 @@ label{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(-
 input,select,textarea{width:100%;margin-top:.3rem;padding:.7rem;border:1px solid var(--coffee);background:#fbf6ea;font:inherit}
 #msg{margin-top:1rem;color:var(--mort);font-style:italic}
 /* team */
-.chead{text-align:center}
-.person{background:#fbf6ea;border:1px solid var(--coffee);padding:1rem;text-align:center}
-.av{width:62px;height:62px;border-radius:50%;margin:0 auto .6rem;background:var(--slate);display:grid;place-items:center;color:var(--tan);border:3px solid var(--tan);outline:1px solid var(--cadet)}
-.person small{display:block;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mort)}
-.person.big{max-width:280px;margin:0 auto;background:var(--cadet);color:var(--tan)}.person.big small{color:#e7d6bb}
-.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1px;background:var(--coffee);border:1px solid var(--coffee)}
-.cats div{background:#fbf6ea;padding:.9rem 1rem}.cats h3{margin:0 0 .3rem;color:var(--mort);font-size:1.4rem}
-.cats p{margin:0;font-size:.92rem}
-.tm{margin-top:2rem}.tm h3{font-size:1.8rem;color:var(--cadet);margin:0 0 .6rem;border-bottom:2px solid var(--mort);display:inline-block}
-.mem{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.8rem;margin-top:.8rem}
-footer{text-align:center;color:#f1e2c6;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;padding:0 1rem 2rem}
+.photo{position:relative;width:150px;aspect-ratio:3/4;margin:0 auto .9rem;background:rgba(0,0,0,.18);border:3px solid var(--tan);display:grid;place-items:center;color:var(--tan);overflow:hidden}
+.photo svg{width:34px;height:34px;opacity:.7}.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.person{text-align:center;padding:1.4rem 1rem;color:var(--tan);background:var(--cadet);border-bottom:5px solid var(--tan)}
+.person b{display:block;font:700 1.45rem "Cormorant Garamond",serif}
+.person small{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:#f1e2c6}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.2rem;margin-top:1.4rem}
+.tgrid .person:nth-child(3n+2){background:var(--coffee)}.tgrid .person:nth-child(3n){background:var(--mort)}
+.person.big{max-width:290px;margin:0 auto;background:var(--mort)}.person.big .photo{width:180px}
+footer{text-align:center;color:var(--coffee);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;padding:0 1rem 2rem}
 /* splash */
 #splash{position:fixed;inset:0;z-index:99;background:var(--cadet);display:grid;place-items:center;text-align:center;color:var(--tan);transition:opacity 1s,visibility 1s}
 #splash.off{opacity:0;visibility:hidden}
@@ -96,8 +88,8 @@ footer{text-align:center;color:#f1e2c6;font-size:.8rem;letter-spacing:.2em;text-
 <div id="splash"><div><p>Welcome to</p><h1>The Message Summit</h1></div></div>
 
 <header>
-  <div class="eyebrow">An O-Level Student Event &middot; Organised by the Girls</div>
-  <h1>Message Summit</h1>
+  <div class="eyebrow">MGS Flagship Event</div>
+  <h1>The Message Summit</h1>
   <p class="sub">A gathering of ideas, talent and leadership</p>
   <nav id="nav">
     <a href="#home" data-p="home">Home</a>
@@ -130,7 +122,7 @@ footer{text-align:center;color:#f1e2c6;font-size:.8rem;letter-spacing:.2em;text-
   <section id="categories"><div class="sheet">
     <div id="catlist">
       <h2>Categories &amp; Study Guides</h2><div class="rule" data-leaf></div>
-      <p>Select a category to open its study guide. Pages may be turned using the buttons or the arrow keys.</p>
+      <p>Select a category to open its study guide, which is presented as a document of ten pages.</p>
       <div class="grid" id="catgrid"></div>
     </div>
     <div id="catbook" hidden></div>
@@ -159,8 +151,8 @@ footer{text-align:center;color:#f1e2c6;font-size:.8rem;letter-spacing:.2em;text-
 
 <script>
 /* =================== EDIT THIS SECTION =================== */
-const IMG = "images";   // folder in your GitHub repo that holds the flipbook pages
-const MAX_PAGES = 10;   // pages per study guide
+const IMG = "images";   // folder in your GitHub repo that holds the study guide pages and team photos
+const MAX_PAGES = 10;   // pages per study guide (shown as a document, page 1 to page 10)
 // "file" = the start of the image name, e.g. images/Dramatics.page-1.png ... Dramatics.page-10.png
 const CATEGORIES = [
   {name:"Business", file:"Business"},
@@ -171,10 +163,8 @@ const CATEGORIES = [
   {name:"Arts", file:"Arts"},
   {name:"Debates", file:"Debates"}
 ];
-const EVENT_HEAD = "Name Surname";
-const TEAMS = [ // [team name, number of members]; names can be replaced in the list below
-  ["Media",5],["Publications",4],["Security",7],["Registrations",5]
-];
+// Team photos: upload to the same images folder, e.g. images/Webdeveloper.png
+const TEAM = [["Event Head","Eventhead"],["Media Head","Mediahead"],["Registration Head","Registrationhead"],["Category Head","Categoryhead"],["Web Developer","Webdeveloper"],["Security Head","Securityhead"],["Publication Head","Publicationhead"]];
 const FORM_URL = ""; // paste a Formspree / form-service URL here when ready
 /* ========================================================== */
 
@@ -202,11 +192,8 @@ $("#catgrid").innerHTML=CATEGORIES.map(c=>`<a class="tile" href="#categories/${c
 $("#regtype").innerHTML=`<option>Bake Sale Stall</option>`+CATEGORIES.map(c=>`<option>${c.name}</option>`).join("");
 
 /* team */
-const card=(role,name)=>`<div class="person"><div class="av">${LEAF.replace("<svg","<svg width='26' height='26'")}</div><b>${name}</b><small>${role}</small></div>`;
-$("#teamroot").innerHTML=`
- <div class="person big"><div class="av">${LEAF.replace("<svg","<svg width='26' height='26'")}</div><h3 style="margin:0">${EVENT_HEAD}</h3><small>Event Head</small></div>
- <div class="tm"><h3>Category Heads</h3><div class="cats">${CATEGORIES.map(c=>`<div><h3>${c.name}</h3><p><b>President:</b> Name Surname</p><p><b>Vice President:</b> Name Surname</p></div>`).join("")}</div></div>
- ${TEAMS.map(t=>`<div class="tm"><h3>${t[0]} Team</h3><div class="mem">${card(t[0]+" Head","Name Surname")}${Array.from({length:t[1]},()=>card("Member","Name Surname")).join("")}</div></div>`).join("")}`;
+const card=(t,cls="")=>`<div class="person ${cls}"><div class="photo">${LEAF}<img src="${IMG}/${t[1]}.png" alt="${t[0]}" onerror="this.remove()"></div><b>Name Surname</b><small>${t[0]}</small></div>`;
+$("#teamroot").innerHTML=card(TEAM[0],"big")+`<div class="tgrid">${TEAM.slice(1).map(t=>card(t)).join("")}</div>`;
 
 /* registration */
 $("#regform").addEventListener("submit",e=>{
@@ -217,39 +204,12 @@ $("#regform").addEventListener("submit",e=>{
    .catch(()=>m.textContent="The submission could not be completed. Kindly try again.");
 });
 
-/* flipbook */
-async function loadPages(file){
-  const ok=await Promise.all(Array.from({length:MAX_PAGES},(_,i)=>new Promise(r=>{
-    const im=new Image();im.onload=()=>r(1);im.onerror=()=>r(0);im.src=`${IMG}/${file}.page-${i+1}.png`})));
-  const n=ok.indexOf(0);const count=n<0?MAX_PAGES:n;
-  return Array.from({length:count},(_,i)=>`${IMG}/${file}.page-${i+1}.png`);
-}
-async function openBook(c){
-  const box=$("#catbook");
-  box.innerHTML=`<a class="back" href="#categories">&larr; All categories</a><h2 style="color:var(--mort);margin:0">${c.name}</h2><div class="rule">${LEAF}</div><p>Loading study guide&hellip;</p>`;
-  const pages=await loadPages(c.file);
-  const head=box.innerHTML.split("<p>Loading")[0];
-  if(!pages.length){box.innerHTML=head+`<div class="note">The study guide for this category will be published shortly.<br><small>Upload <code>${IMG}/${c.file}.page-1.png</code> to the repository to display it here.</small></div>`;return}
-  box.innerHTML=head+`<div class="book"><div class="pg l"></div><div class="pg r"></div></div><div class="ctl"><button id="pv">&lsaquo; Previous</button><span id="pn"></span><button id="nx">Next &rsaquo;</button></div>`;
-  const bk=box.querySelector(".book"),L=bk.querySelector(".l"),R=bk.querySelector(".r"),last=Math.floor(pages.length/2);
-  let s=0,busy=false;
-  const bg=(el,u)=>{el.style.backgroundImage=u?`url(${u})`:"none";el.classList.toggle("empty",!u)};
-  const draw=(l=true,r=true)=>{if(l)bg(L,pages[2*s-1]);if(r)bg(R,pages[2*s]);
-    $("#pn").textContent=`Spread ${s+1} of ${last+1}`;$("#pv").disabled=s==0;$("#nx").disabled=s==last};
-  function flip(d){
-    if(busy||s+d<0||s+d>last)return;busy=true;
-    const f=document.createElement("div");f.className="flip "+(d>0?"fr":"fl");
-    f.innerHTML="<i></i><i class='fk'></i>";const[a,b]=f.children;
-    bg(a,d>0?pages[2*s]:pages[2*s-1]);bg(b,d>0?pages[2*(s+d)-1]:pages[2*(s+d)]);
-    a.classList.remove("empty");b.classList.remove("empty");
-    bk.appendChild(f);
-    if(d>0)bg(R,pages[2*(s+1)]);else bg(L,pages[2*(s-1)-1]);
-    requestAnimationFrame(()=>requestAnimationFrame(()=>f.style.transform=`rotateY(${d>0?-180:180}deg)`));
-    setTimeout(()=>{s+=d;draw();f.remove();busy=false},850);
-  }
-  $("#pv").onclick=()=>flip(-1);$("#nx").onclick=()=>flip(1);
-  window.onkeydown=e=>{if(e.key=="ArrowRight")flip(1);if(e.key=="ArrowLeft")flip(-1)};
-  draw();
+/* study guide document */
+function openBook(c){
+  let pages="";
+  for(let i=1;i<=MAX_PAGES;i++){const u=`${IMG}/${c.file}.page-${i}.png`;
+    pages+=`<figure class="dp"><img src="${u}" alt="${c.name} study guide, page ${i}" loading="lazy" onerror="this.parentNode.classList.add('miss');this.remove()"><div class="ph">Page ${i}<small>Upload ${u}</small></div><figcaption>Page ${i} of ${MAX_PAGES}</figcaption></figure>`}
+  $("#catbook").innerHTML=`<a class="back" href="#categories">&larr; All categories</a><h2 style="color:var(--mort);margin:0">${c.name} Study Guide</h2><div class="rule">${LEAF}</div><div class="doc">${pages}</div>`;
 }
 
 /* router */
@@ -261,7 +221,7 @@ function route(){
   if(page=="categories"){
     const c=CATEGORIES.find(x=>x.file==sub);
     $("#catlist").hidden=!!c;$("#catbook").hidden=!c;
-    if(c)openBook(c);else window.onkeydown=null;
+    if(c)openBook(c);
   }
   window.scrollTo(0,0);
 }
