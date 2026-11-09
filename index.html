@@ -82,8 +82,10 @@ input,select,textarea{width:100%;margin-top:.3rem;padding:.7rem;border:1px solid
 .trow .lead .photo{width:min(165px,90%)}.trow .lead b{font-size:1.5rem}
 .th{font-size:2rem;color:var(--mort);margin:2.4rem 0 .2rem;border-bottom:2px solid var(--mort)}
 .cg{margin-top:1.4rem}.cg h4{font:700 1.5rem "Cormorant Garamond",serif;margin:0;color:var(--cadet)}
-.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:1.6rem 1.4rem;margin-top:1.2rem}
-.cg{margin-top:0!important}
+.cgrid{display:flex;flex-wrap:wrap;justify-content:center;gap:1.6rem 1.4rem;margin-top:1.2rem}
+.cg{margin-top:0!important;flex:1 1 380px;max-width:100%}
+@media(min-width:820px){.cg{max-width:calc(50% - .7rem)}}
+.one{display:grid;grid-template-columns:210px;justify-content:center;margin-top:1.2rem}
 .cg .tgrid{margin-top:.5rem;grid-template-columns:1fr 1fr;gap:.7rem}
 .cg .person{padding:1rem .5rem}.cg .person b{font-size:1.2rem}.cg .photo{width:min(120px,85%)}
 .tgrid .person{background:var(--cadet)}
@@ -222,10 +224,11 @@ $("#regtype").innerHTML=`<option>Bake Sale Stall</option>`+CATEGORIES.map(c=>`<o
 /* team */
 const card=(role,file,name,cls="")=>`<div class="person ${cls}"><div class="photo">${LEAF}<img src="${PATHS[0]}${file}.png" data-f="${file}.png" data-m="team" alt="${role}" onerror="nxt(this)"></div><b>${name}</b><small>${role}</small></div>`;
 $("#teamroot").innerHTML=
-  `<div class="trow">${TOP.map((t,i)=>card(t[0],t[1],t[2],i?"":"lead")).join("")}</div>`+
+  card(TOP[0][0],TOP[0][1],TOP[0][2],"big")+
+  `<div class="tgrid">${TOP.slice(1).map(t=>card(t[0],t[1],t[2])).join("")}</div>`+
   `<h3 class="th">Category Heads</h3>`+
   `<div class="cgrid">`+CAT_TEAM.map((c,i)=>`<div class="cg cg${i%3}"><h4>${c.name} Category</h4><div class="tgrid">${card("Head",c.file+"-Head",c.head)}${card("Cohead",c.file+"-Cohead",c.cohead)}</div></div>`).join("")+`</div>`+
-  `<h3 class="th">Web Development</h3>`+card(WEBDEV[0],WEBDEV[1],WEBDEV[2],"big web");
+  `<h3 class="th">Web Development</h3>`+`<div class="one">${card(WEBDEV[0],WEBDEV[1],WEBDEV[2])}</div>`;
 
 /* registration */
 $("#regform").addEventListener("submit",e=>{
