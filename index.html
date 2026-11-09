@@ -81,7 +81,8 @@ input,select,textarea{width:100%;margin-top:.3rem;padding:.7rem;border:1px solid
 .trow .person.lead{flex:1.25 1 190px;background:var(--mort);padding:1.6rem .6rem}
 .trow .lead .photo{width:min(165px,90%)}.trow .lead b{font-size:1.5rem}
 .th{font-size:2rem;color:var(--mort);margin:2.4rem 0 .2rem;border-bottom:2px solid var(--mort)}
-.cg{margin-top:1.4rem}.cg h4{font:700 1.5rem "Cormorant Garamond",serif;margin:0;color:var(--cadet)}
+.cg{margin-top:1.4rem}.cg .ev{margin:0;font-style:italic;color:var(--mort);font-size:.95rem}
+.cg h4{font:700 1.5rem "Cormorant Garamond",serif;margin:0;color:var(--cadet)}
 .cgrid{display:flex;flex-wrap:wrap;justify-content:center;gap:1.6rem 1.4rem;margin-top:1.2rem}
 .cg{margin-top:0!important;flex:1 1 380px;max-width:100%}
 @media(min-width:820px){.cg{max-width:calc(50% - .7rem)}}
@@ -174,11 +175,11 @@ const MAX_PAGES = 10;   // pages per study guide (shown as a document, page 1 to
 // "file" = the start of the image name, e.g. images/Dramatics.page-1.png ... Dramatics.page-10.png
 const CATEGORIES = [
   {name:"Business", file:"Business", doc:"Corporate_Clash_Guide.pdf"},
-  {name:"STEM", file:"STEM"},
-  {name:"Literature", file:"Literature", doc:"Summit_Literary_Study_Guide.pdf"},
+  {name:"STEM", file:"STEM", doc:"STEM_Segment_Guide.pdf"},
+  {name:"Literary", file:"Literature", doc:"Summit_Literary_Study_Guide.pdf"},
   {name:"Community Service", file:"Community-Service", doc:"Community_Service_Guide.pdf"},
   {name:"Dramatics", file:"Dramatics"},
-  {name:"Arts", file:"Arts"},
+  {name:"Arts", file:"Arts", doc:"Art_Categories_Guide.pdf"},
   {name:"Debates", file:"Debates", doc:"Rhetoric_Forum_Guide.pdf"}
 ];
 // Team: [role, photo file name (images/<name>.png), person's name]
@@ -186,13 +187,13 @@ const TOP = [["Event Head","Eventhead","Fatima Zahra Zuberi"],["Media Head","Med
 const WEBDEV = ["Web Developer","Webdeveloper","Anam Bilal"];
 // Category heads: photos are images/<file>-Head.png and images/<file>-Cohead.png
 const CAT_TEAM = [
-  {name:"Debates",file:"Debates",head:"Name Surname",cohead:"Name Surname"},
-  {name:"STEM",file:"STEM",head:"Name Surname",cohead:"Name Surname"},
-  {name:"Community Service",file:"Community-Service",head:"Name Surname",cohead:"Name Surname"},
-  {name:"Literature",file:"Literature",head:"Name Surname",cohead:"Name Surname"},
-  {name:"Business",file:"Business",head:"Name Surname",cohead:"Name Surname"},
-  {name:"Dramatics",file:"Dramatics",head:"Name Surname",cohead:"Name Surname"},
-  {name:"Arts",file:"Arts",head:"Name Surname",cohead:"Name Surname"}
+  {name:"Debates",event:"The Rhetoric Forum",file:"Debates",head:"Ayesha Siddiqua Wasti",cohead:"Javeria Bilal"},
+  {name:"STEM",event:"Stem Enigma",file:"STEM",head:"Nabiha Shahid",cohead:"Zinnur Junaid"},
+  {name:"Community Service",event:"Remnant Upcycle",file:"Community-Service",head:"Mumaiza Khalid",cohead:"To Be Announced"},
+  {name:"Literary",event:"",file:"Literature",head:"Zainab Asim",cohead:"To Be Announced"},
+  {name:"Business",event:"Corporate Clash",file:"Business",head:"Sherbano Raza",cohead:"To Be Announced"},
+  {name:"Dramatics",event:"",file:"Dramatics",head:"Momina Salman",cohead:"Fatima Cheema"},
+  {name:"Arts",event:"Monet\u2019s Minions",file:"Arts",head:"Eshaal Ali",cohead:"To Be Announced"}
 ];
 const FORM_URL = ""; // paste a Formspree / form-service URL here when ready
 /* ========================================================== */
@@ -227,7 +228,7 @@ $("#teamroot").innerHTML=
   card(TOP[0][0],TOP[0][1],TOP[0][2],"big")+
   `<div class="tgrid">${TOP.slice(1).map(t=>card(t[0],t[1],t[2])).join("")}</div>`+
   `<h3 class="th">Category Heads</h3>`+
-  `<div class="cgrid">`+CAT_TEAM.map((c,i)=>`<div class="cg cg${i%3}"><h4>${c.name} Category</h4><div class="tgrid">${card("Head",c.file+"-Head",c.head)}${card("Cohead",c.file+"-Cohead",c.cohead)}</div></div>`).join("")+`</div>`+
+  `<div class="cgrid">`+CAT_TEAM.map((c,i)=>`<div class="cg cg${i%3}"><h4>${c.name}</h4>${c.event?`<p class="ev">${c.event}</p>`:""}<div class="tgrid">${card("Head",c.file+"-Head",c.head)}${card("Cohead",c.file+"-Cohead",c.cohead)}</div></div>`).join("")+`</div>`+
   `<h3 class="th">Web Development</h3>`+`<div class="one">${card(WEBDEV[0],WEBDEV[1],WEBDEV[2])}</div>`;
 
 /* registration */
