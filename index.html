@@ -42,7 +42,7 @@ section{display:none}section.on{display:block;animation:rise .5s ease}
 .tile:nth-child(3n+2){background:var(--coffee)}
 .tile:nth-child(3n){background:var(--mort);border-left-color:var(--tan)}
 .tile:hover{transform:translate(-3px,-3px);filter:brightness(1.25)}
-.tile.soon{opacity:.6}.tile.soon:hover{transform:none;filter:none}
+.tile.soon{opacity:.6}.tile.soon:hover,.tile.static:hover{transform:none;filter:none}
 .tile b{display:block;font:700 1.55rem "Cormorant Garamond",serif;color:var(--tan)}
 .tile span{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase}
 details{border-top:1px solid rgba(111,77,56,.5);padding:.2rem 0}
@@ -81,7 +81,8 @@ input,select,textarea{width:100%;margin-top:.3rem;padding:.7rem;border:1px solid
 .trow .person.lead{flex:1.25 1 190px;background:var(--mort);padding:1.6rem .6rem}
 .trow .lead .photo{width:min(165px,90%)}.trow .lead b{font-size:1.5rem}
 .th{font-size:2rem;color:var(--mort);margin:2.4rem 0 .2rem;border-bottom:2px solid var(--mort)}
-.cg{margin-top:1.4rem}.cg .ev{margin:0;font-style:italic;color:var(--mort);font-size:.95rem}
+.cg{margin-top:1.4rem}.cg.solo{text-align:center}.cg.solo .tgrid{grid-template-columns:minmax(0,50%);justify-content:center}
+.cg .ev{margin:0;font-style:italic;color:var(--mort);font-size:.95rem}
 .cg h4{font:700 1.5rem "Cormorant Garamond",serif;margin:0;color:var(--cadet)}
 .cgrid{display:flex;flex-wrap:wrap;justify-content:center;gap:1.6rem 1.4rem;margin-top:1.2rem}
 .cg{margin-top:0!important;flex:1 1 380px;max-width:100%}
@@ -175,25 +176,25 @@ const MAX_PAGES = 10;   // pages per study guide (shown as a document, page 1 to
 // "file" = the start of the image name, e.g. images/Dramatics.page-1.png ... Dramatics.page-10.png
 const CATEGORIES = [
   {name:"Business", file:"Business", doc:"Corporate_Clash_Guide.pdf"},
-  {name:"STEM", file:"STEM", doc:"STEM_Segment_Guide.pdf"},
+  {name:"STEM: Digicon", file:"STEM", doc:"STEM_Slot1_Digicon_Guide.pdf", sub:"Slot 1 \u00b7 Study guide (PDF)"},
+  {name:"STEM: Enigma", file:"STEM", doc:"STEM_Slot2_Enigma_Guide.pdf", sub:"Slot 2 \u00b7 Study guide (PDF)"},
   {name:"Literary", file:"Literature", doc:"Summit_Literary_Study_Guide.pdf"},
   {name:"Community Service", file:"Community-Service", doc:"Community_Service_Guide.pdf"},
-  {name:"Dramatics", file:"Dramatics"},
+  {name:"Dramatics", file:"Dramatics", note:"Physical study guides by Momina Salman"},
   {name:"Arts", file:"Arts", doc:"Art_Categories_Guide.pdf"},
   {name:"Debates", file:"Debates", doc:"Rhetoric_Forum_Guide.pdf"}
 ];
 // Team: [role, photo file name (images/<name>.png), person's name]
 const TOP = [["Event Head","Eventhead","Fatima Zahra Zuberi"],["Media Head","Mediahead","Dmiyah Fatima"],["Publications Head","Publicationhead","Aisha Usman"],["Registrations Head","Registrationhead","Israa Rehman"],["Security Head","Securityhead","Kiswa Imran Goraya"]];
 const WEBDEV = ["Web Developer","Webdeveloper","Anam Bilal"];
-// Category heads: photos are images/<file>-Head.png and images/<file>-Cohead.png
-const CAT_TEAM = [
-  {name:"Debates",event:"The Rhetoric Forum",file:"Debates",head:"Ayesha Siddiqua Wasti",cohead:"Javeria Bilal"},
-  {name:"STEM",event:"Stem Enigma",file:"STEM",head:"Nabiha Shahid",cohead:"Zinnur Junaid"},
-  {name:"Community Service",event:"Remnant Upcycle",file:"Community-Service",head:"Mumaiza Khalid",cohead:"To Be Announced"},
-  {name:"Literary",event:"",file:"Literature",head:"Zainab Asim",cohead:"To Be Announced"},
-  {name:"Business",event:"Corporate Clash",file:"Business",head:"Sherbano Raza",cohead:"To Be Announced"},
-  {name:"Dramatics",event:"",file:"Dramatics",head:"Momina Salman",cohead:"Fatima Cheema"},
-  {name:"Arts",event:"Monet\u2019s Minions",file:"Arts",head:"Eshaal Ali",cohead:"To Be Announced"}
+const CAT_TEAM = [ // people: [role, photo name (images/<name>.png), person]
+  {name:"Debates",event:"The Rhetoric Forum",people:[["Head","Debates-Head","Ayesha Siddiqua Wasti"],["Cohead","Debates-Cohead","Javeria Bilal"]]},
+  {name:"STEM",event:"Stem Enigma and Stem Digicon",people:[["Enigma Head","STEM-Enigma-Head","Nabiha Shahid"],["Digicon Head","STEM-Digicon-Head","Zinnur Junaid"]]},
+  {name:"Community Service",event:"Remnant Upcycle",people:[["Head","Community-Service-Head","Mumaiza Khalid"],["Cohead","Community-Service-Cohead","Aena Waqas"]]},
+  {name:"Literary",event:"",people:[["Head","Literature-Head","Zainab Asim"],["Cohead","Literature-Cohead","Aaiza Ahmad"]]},
+  {name:"Business",event:"Corporate Clash",people:[["Head","Business-Head","Sherbano Raza"],["Cohead","Business-Cohead","Aileen Chaudary"]]},
+  {name:"Dramatics",event:"",people:[["Head","Dramatics-Head","Momina Salman"],["Cohead","Dramatics-Cohead","Humna Naseeb"]]},
+  {name:"Arts",event:"Monet\u2019s Minions",people:[["Head","Arts-Head","Eshaal Ali"]]}
 ];
 const FORM_URL = ""; // paste a Formspree / form-service URL here when ready
 /* ========================================================== */
@@ -218,7 +219,7 @@ const LEAF='<svg viewBox="0 0 32 32"><path d="M4 28C4 12 14 4 28 4C28 18 20 28 4
 document.querySelectorAll("[data-leaf]").forEach(e=>e.innerHTML=LEAF);
 
 $("#policy").innerHTML=POLICY.map((p,i)=>`<details ${i?"":"open"}><summary>${i+1}. ${p[0]}</summary><ul>${p[1].map(t=>`<li>${t}</li>`).join("")}</ul></details>`).join("");
-$("#catgrid").innerHTML=CATEGORIES.map(c=>c.doc?`<a class="tile" data-doc="${c.doc}" href="${c.doc}" target="_blank" rel="noopener"><b>${c.name}</b><span>Open study guide (PDF)</span></a>`:`<div class="tile soon"><b>${c.name}</b><span>Coming soon</span></div>`).join("");
+$("#catgrid").innerHTML=CATEGORIES.map(c=>c.doc?`<a class="tile" data-doc="${c.doc}" href="${c.doc}" target="_blank" rel="noopener"><b>${c.name}</b><span>${c.sub||"Open study guide (PDF)"}</span></a>`:`<div class="tile ${c.note?"static":"soon"}"><b>${c.name}</b><span>${c.note||"Coming soon"}</span></div>`).join("");
 document.querySelectorAll("a.tile[data-doc]").forEach(async a=>{for(const p of ["","guides/","Guides/"]){try{const r=await fetch(p+a.dataset.doc,{method:"HEAD"});if(r.ok){a.href=p+a.dataset.doc;return}}catch(e){}}});
 $("#regtype").innerHTML=`<option>Bake Sale Stall</option>`+CATEGORIES.map(c=>`<option>${c.name}</option>`).join("");
 
@@ -228,7 +229,7 @@ $("#teamroot").innerHTML=
   card(TOP[0][0],TOP[0][1],TOP[0][2],"big")+
   `<div class="tgrid">${TOP.slice(1).map(t=>card(t[0],t[1],t[2])).join("")}</div>`+
   `<h3 class="th">Category Heads</h3>`+
-  `<div class="cgrid">`+CAT_TEAM.map((c,i)=>`<div class="cg cg${i%3}"><h4>${c.name}</h4>${c.event?`<p class="ev">${c.event}</p>`:""}<div class="tgrid">${card("Head",c.file+"-Head",c.head)}${card("Cohead",c.file+"-Cohead",c.cohead)}</div></div>`).join("")+`</div>`+
+  `<div class="cgrid">`+CAT_TEAM.map((c,i)=>`<div class="cg cg${i%3}${c.people.length<2?" solo":""}"><h4>${c.name}</h4>${c.event?`<p class="ev">${c.event}</p>`:""}<div class="tgrid">${c.people.map(p=>card(p[0],p[1],p[2])).join("")}</div></div>`).join("")+`</div>`+
   `<h3 class="th">Web Development</h3>`+`<div class="one">${card(WEBDEV[0],WEBDEV[1],WEBDEV[2])}</div>`;
 
 /* registration */
