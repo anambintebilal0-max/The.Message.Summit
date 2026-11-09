@@ -73,6 +73,12 @@ input,select,textarea{width:100%;margin-top:.3rem;padding:.7rem;border:1px solid
 .person small{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:#f1e2c6}
 .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.2rem;margin-top:1.4rem}
 .tgrid .person:nth-child(3n+2){background:var(--coffee)}.tgrid .person:nth-child(3n){background:var(--mort)}
+.trow{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.4rem;align-items:stretch}
+.trow .person{flex:1 1 150px;padding:1.2rem .6rem}.trow .person b{font-size:1.2rem}
+.trow .photo{width:min(130px,88%)}
+.trow .person:nth-child(even){background:var(--coffee)}
+.trow .person.lead{flex:1.25 1 190px;background:var(--mort);padding:1.6rem .6rem}
+.trow .lead .photo{width:min(165px,90%)}.trow .lead b{font-size:1.5rem}
 .th{font-size:2rem;color:var(--mort);margin:2.4rem 0 .2rem;border-bottom:2px solid var(--mort)}
 .cg{margin-top:1.4rem}.cg h4{font:700 1.5rem "Cormorant Garamond",serif;margin:0;color:var(--cadet)}
 .cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:1.6rem 1.4rem;margin-top:1.2rem}
@@ -130,7 +136,7 @@ footer{text-align:center;color:var(--coffee);font-size:.8rem;letter-spacing:.2em
   <section id="categories"><div class="sheet">
     <div id="catlist">
       <h2>Categories &amp; Study Guides</h2><div class="rule" data-leaf></div>
-      <p>Select a category to open its study guide, which is presented as a document of ten pages.</p>
+      <p>Select a category to open its study guide.</p>
       <div class="grid" id="catgrid"></div>
     </div>
     <div id="catbook" hidden></div>
@@ -161,15 +167,16 @@ footer{text-align:center;color:var(--coffee);font-size:.8rem;letter-spacing:.2em
 /* =================== EDIT THIS SECTION =================== */
 const IMG = "images";   // folder in your GitHub repo that holds the study guide pages and team photos
 const MAX_PAGES = 10;   // pages per study guide (shown as a document, page 1 to page 10)
+// "doc" = a PDF study guide that opens in a new tab (upload it to the guides folder). Categories without "doc" show their page images instead.
 // "file" = the start of the image name, e.g. images/Dramatics.page-1.png ... Dramatics.page-10.png
 const CATEGORIES = [
-  {name:"Business", file:"Business"},
+  {name:"Business", file:"Business", doc:"guides/Corporate_Clash_Guide.pdf"},
   {name:"STEM", file:"STEM"},
-  {name:"Literature", file:"Literature"},
-  {name:"Community Service", file:"Community-Service"},
+  {name:"Literature", file:"Literature", doc:"guides/Summit_Literary_Study_Guide.pdf"},
+  {name:"Community Service", file:"Community-Service", doc:"guides/Community_Service_Guide.pdf"},
   {name:"Dramatics", file:"Dramatics"},
   {name:"Arts", file:"Arts"},
-  {name:"Debates", file:"Debates"}
+  {name:"Debates", file:"Debates", doc:"guides/Rhetoric_Forum_Guide.pdf"}
 ];
 // Team: [role, photo file name (images/<name>.png), person's name]
 const TOP = [["Event Head","Eventhead","Fatima Zahra Zuberi"],["Media Head","Mediahead","Dmiyah Fatima"],["Publications Head","Publicationhead","Aisha Usman"],["Registrations Head","Registrationhead","Israa Rehman"],["Security Head","Securityhead","Kiswa Imran Goraya"]];
@@ -207,14 +214,13 @@ const LEAF='<svg viewBox="0 0 32 32"><path d="M4 28C4 12 14 4 28 4C28 18 20 28 4
 document.querySelectorAll("[data-leaf]").forEach(e=>e.innerHTML=LEAF);
 
 $("#policy").innerHTML=POLICY.map((p,i)=>`<details ${i?"":"open"}><summary>${i+1}. ${p[0]}</summary><ul>${p[1].map(t=>`<li>${t}</li>`).join("")}</ul></details>`).join("");
-$("#catgrid").innerHTML=CATEGORIES.map(c=>`<a class="tile" href="#categories/${c.file}"><b>${c.name}</b><span>Open study guide</span></a>`).join("");
+$("#catgrid").innerHTML=CATEGORIES.map(c=>c.doc?`<a class="tile" href="${c.doc}" target="_blank" rel="noopener"><b>${c.name}</b><span>Open study guide (PDF)</span></a>`:`<a class="tile" href="#categories/${c.file}"><b>${c.name}</b><span>Open study guide</span></a>`).join("");
 $("#regtype").innerHTML=`<option>Bake Sale Stall</option>`+CATEGORIES.map(c=>`<option>${c.name}</option>`).join("");
 
 /* team */
 const card=(role,file,name,cls="")=>`<div class="person ${cls}"><div class="photo">${LEAF}<img src="${IMG}/${file}.png" alt="${role}" onerror="this.remove()"></div><b>${name}</b><small>${role}</small></div>`;
 $("#teamroot").innerHTML=
-  card(...TOP[0].slice(0,2),TOP[0][2],"big")+
-  `<div class="tgrid">${TOP.slice(1).map(t=>card(t[0],t[1],t[2])).join("")}</div>`+
+  `<div class="trow">${TOP.map((t,i)=>card(t[0],t[1],t[2],i?"":"lead")).join("")}</div>`+
   `<h3 class="th">Category Heads</h3>`+
   `<div class="cgrid">`+CAT_TEAM.map((c,i)=>`<div class="cg cg${i%3}"><h4>${c.name} Category</h4><div class="tgrid">${card("Head",c.file+"-Head",c.head)}${card("Cohead",c.file+"-Cohead",c.cohead)}</div></div>`).join("")+`</div>`+
   `<h3 class="th">Web Development</h3>`+card(WEBDEV[0],WEBDEV[1],WEBDEV[2],"big web");
