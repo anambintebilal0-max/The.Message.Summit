@@ -219,7 +219,7 @@ const LEAF='<svg viewBox="0 0 32 32"><path d="M4 28C4 12 14 4 28 4C28 18 20 28 4
 document.querySelectorAll("[data-leaf]").forEach(e=>e.innerHTML=LEAF);
 
 $("#policy").innerHTML=POLICY.map((p,i)=>`<details ${i?"":"open"}><summary>${i+1}. ${p[0]}</summary><ul>${p[1].map(t=>`<li>${t}</li>`).join("")}</ul></details>`).join("");
-$("#catgrid").innerHTML=CATEGORIES.map(c=>c.doc?`<a class="tile" data-doc="${c.doc}" href="${c.doc}" target="_blank" rel="noopener"><b>${c.name}</b><span>${c.sub||"Open study guide (PDF)"}</span></a>`:`<div class="tile ${c.note?"static":"soon"}"><b>${c.name}</b><span>${c.note||"Coming soon"}</span></div>`).join("");
+$("#catgrid").innerHTML=CATEGORIES.map(c=>c.doc?`<a class="tile" data-doc="${c.doc}" href="${c.doc}" target="_blank" rel="noopener"><b>${c.name}</b></a>`:`<div class="tile ${c.note?"static":"soon"}"><b>${c.name}</b><span>${c.note||"Coming soon"}</span></div>`).join("");
 document.querySelectorAll("a.tile[data-doc]").forEach(async a=>{for(const p of ["","guides/","Guides/"]){try{const r=await fetch(p+a.dataset.doc,{method:"HEAD"});if(r.ok){a.href=p+a.dataset.doc;return}}catch(e){}}});
 $("#regtype").innerHTML=`<option>Bake Sale Stall</option>`+CATEGORIES.map(c=>`<option>${c.name}</option>`).join("");
 
@@ -251,7 +251,7 @@ function openBook(c){
   let pages="";const N=c.pages||MAX_PAGES;
   for(let i=1;i<=N;i++){const u=`${c.file}.page-${i}.png`;
     pages+=`<figure class="dp"><img src="${PATHS[0]}${u}" data-f="${u}" data-m="doc" alt="${c.name} study guide, page ${i}" loading="lazy" onerror="nxt(this)"><div class="ph">Page ${i}<small>Upload ${u}</small></div><figcaption>Page ${i} of ${N}</figcaption></figure>`}
-  $("#catbook").innerHTML=`<a class="back" href="#categories">&larr; All categories</a><h2 style="color:var(--mort);margin:0">${c.name} Study Guide</h2><div class="rule">${LEAF}</div><div class="doc">${pages}</div>`;
+  $("#catbook").innerHTML=`<a class="back" href="#categories">&larr; All categories</a><h2 style="color:var(--mort);margin:0">${c.name}</h2><div class="rule">${LEAF}</div><div class="doc">${pages}</div>`;
 }
 
 /* router */
