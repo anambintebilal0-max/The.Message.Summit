@@ -149,16 +149,8 @@ footer{text-align:center;color:var(--coffee);font-size:.8rem;letter-spacing:.2em
 
   <section id="registrations"><div class="sheet">
     <h2>Registrations</h2><div class="rule" data-leaf></div>
-    <p>Kindly complete the form below to register for a bake sale stall or a category. All information provided must be accurate.</p>
-    <form id="regform">
-      <label>Full Name<input name="name" required></label>
-      <label>Class / Section<input name="class" required></label>
-      <label>Email or Contact Number<input name="contact" required></label>
-      <label>Registering For<select name="type" id="regtype"></select></label>
-      <label>Details (stall items, team members, or other remarks)<textarea name="details" rows="4"></textarea></label>
-      <button class="btn" type="submit">Submit Registration</button>
-    </form>
-    <p id="msg"></p>
+    <p>Kindly use the button below to open the registration form for a bake sale stall or a category. All information provided must be accurate.</p>
+    <p style="margin-top:1.6rem"><a class="btn" style="display:inline-block;text-decoration:none" href="https://docs.google.com/forms/d/1tpXQBq2NL9e1M112uXHd8Bns20R148KmFjM0s37xzk4/viewform?edit_requested=true" target="_blank" rel="noopener">Register Here</a></p>
   </div></section>
 
   <section id="team"><div class="sheet">
@@ -178,9 +170,7 @@ const CATEGORIES = [
   {name:"Corporate Clash", file:"Business", doc:"Corporate_Clash_Guide.pdf"},
   {name:"Stem Digicon", file:"STEM", doc:"STEM_Slot1_Digicon_Guide.pdf", sub:"Slot 1 \u00b7 Study guide (PDF)"},
   {name:"Stem Enigma", file:"STEM", doc:"STEM_Slot2_Enigma_Guide.pdf", sub:"Slot 2 \u00b7 Study guide (PDF)"},
-  {name:"The Lit List", file:"Literature", doc:"Summit_Literary_Study_Guide.pdf"},
   {name:"Remnant Upcycle", file:"Community-Service", doc:"Community_Service_Guide.pdf"},
-  {name:"Dramatics", file:"Dramatics", note:"Physical study guides by Momina Salman"},
   {name:"Monet\u2019s Minions", file:"Arts", doc:"Art_Categories_Guide.pdf"},
   {name:"The Rhetoric Forum", file:"Debates", doc:"Rhetoric_Forum_Guide.pdf"}
 ];
@@ -191,12 +181,9 @@ const CAT_TEAM = [ // people: [role, photo name (images/<name>.png), person]
   {name:"The Rhetoric Forum",event:"",people:[["Head","Debates-Head","Ayesha Siddiqua Wasti"],["Cohead","Debates-Cohead","Javeria Bilal"]]},
   {name:"Stem Enigma and Stem Digicon",event:"",people:[["Enigma Head","STEM-Enigma-Head","Nabiha Shahid"],["Digicon Head","STEM-Digicon-Head","Zinnur Junaid"]]},
   {name:"Remnant Upcycle",event:"",people:[["Head","Community-Service-Head","Mumaiza Khalid"],["Cohead","Community-Service-Cohead","Aena Waqas"]]},
-  {name:"The Lit List",event:"",people:[["Head","Literature-Head","Zainab Asim"],["Cohead","Literature-Cohead","Aaiza Ahmad"]]},
   {name:"Corporate Clash",event:"",people:[["Head","Business-Head","Sherbano Raza"],["Cohead","Business-Cohead","Aileen Chaudary"]]},
-  {name:"Dramatics",event:"",people:[["Head","Dramatics-Head","Momina Salman"],["Cohead","Dramatics-Cohead","Humna Naseeb"]]},
   {name:"Monet\u2019s Minions",event:"",people:[["Head","Arts-Head","Eshaal Ali"]]}
 ];
-const FORM_URL = ""; // paste a Formspree / form-service URL here when ready
 /* ========================================================== */
 
 const POLICY = [
@@ -221,7 +208,6 @@ document.querySelectorAll("[data-leaf]").forEach(e=>e.innerHTML=LEAF);
 $("#policy").innerHTML=POLICY.map((p,i)=>`<details ${i?"":"open"}><summary>${i+1}. ${p[0]}</summary><ul>${p[1].map(t=>`<li>${t}</li>`).join("")}</ul></details>`).join("");
 $("#catgrid").innerHTML=CATEGORIES.map(c=>c.doc?`<a class="tile" data-doc="${c.doc}" href="${c.doc}" target="_blank" rel="noopener"><b>${c.name}</b></a>`:`<div class="tile ${c.note?"static":"soon"}"><b>${c.name}</b><span>${c.note||"Coming soon"}</span></div>`).join("");
 document.querySelectorAll("a.tile[data-doc]").forEach(async a=>{for(const p of ["","guides/","Guides/"]){try{const r=await fetch(p+a.dataset.doc,{method:"HEAD"});if(r.ok){a.href=p+a.dataset.doc;return}}catch(e){}}});
-$("#regtype").innerHTML=`<option>Bake Sale Stall</option>`+CATEGORIES.map(c=>`<option>${c.name}</option>`).join("");
 
 /* team */
 const card=(role,file,name,cls="")=>`<div class="person ${cls}"><div class="photo">${LEAF}<img src="${PATHS[0]}${file}.png" data-f="${file}.png" data-m="team" alt="${role}" onerror="nxt(this)"></div><b>${name}</b><small>${role}</small></div>`;
@@ -231,15 +217,6 @@ $("#teamroot").innerHTML=
   `<h3 class="th">Category Heads</h3>`+
   `<div class="cgrid">`+CAT_TEAM.map((c,i)=>`<div class="cg cg${i%3}${c.people.length<2?" solo":""}"><h4>${c.name}</h4>${c.event?`<p class="ev">${c.event}</p>`:""}<div class="tgrid">${c.people.map(p=>card(p[0],p[1],p[2])).join("")}</div></div>`).join("")+`</div>`+
   `<h3 class="th">Web Development</h3>`+`<div class="one">${card(WEBDEV[0],WEBDEV[1],WEBDEV[2])}</div>`;
-
-/* registration */
-$("#regform").addEventListener("submit",e=>{
-  e.preventDefault();const m=$("#msg");
-  if(!FORM_URL){m.textContent="Registrations are not yet open. Kindly check again shortly.";return}
-  fetch(FORM_URL,{method:"POST",body:new FormData(e.target),headers:{Accept:"application/json"}})
-   .then(r=>{m.textContent=r.ok?"Thank you. Your registration has been submitted.":"The submission could not be completed. Kindly try again.";if(r.ok)e.target.reset()})
-   .catch(()=>m.textContent="The submission could not be completed. Kindly try again.");
-});
 
 /* study guide document */
 function nxt(im){const i=(+im.dataset.i||0)+1;
