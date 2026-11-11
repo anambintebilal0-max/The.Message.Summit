@@ -98,12 +98,13 @@ footer{text-align:center;color:var(--coffee);font-size:.8rem;letter-spacing:.2em
 #splash{position:fixed;inset:0;z-index:99;background:var(--cadet);display:grid;place-items:center;text-align:center;color:var(--tan);transition:opacity 1s,visibility 1s}
 #splash.off{opacity:0;visibility:hidden}
 #splash h1{font-size:clamp(2.6rem,10vw,6.5rem);margin:0;letter-spacing:.05em;animation:rise 1.4s ease both}
+#splash .reb{font:italic 500 clamp(1.4rem,4.5vw,2.6rem)/1.2 "Cormorant Garamond",serif;margin:.6rem 0 0;color:#e7d6bb;letter-spacing:.08em;animation:rise 1.4s .9s ease both}
 #splash p{letter-spacing:.4em;text-transform:uppercase;font-size:.8rem;animation:rise 1.4s .5s ease both}
 </style>
 </head>
 <body>
 
-<div id="splash"><div><p>Welcome to</p><h1>The Message Summit</h1></div></div>
+<div id="splash"><div><p>Welcome to</p><h1>The Message Summit</h1><h2 class="reb">Rebirth of The Phoenix</h2></div></div>
 
 <header>
   <div class="eyebrow">MGS Flagship Event</div>
@@ -175,8 +176,8 @@ const CATEGORIES = [
   {name:"The Rhetoric Forum", file:"Debates", doc:"Rhetoric_Forum_Guide.pdf"}
 ];
 // Team: [role, person's name, "quote"]  -- quotes show only for these people; empty "" shows "Quote coming soon".
-const TOP = [["Event Head","Fatima Zahra Zuberi",""],["Media Head","Dmiyah Fatima","“Too many ideas, too little sleep, and a veto with my name on it.”"],["Publications Head","Aisha Usman","“Little by little, one travels far.” — J.R.R. Tolkien"],["Registrations Head","Israa Rehman",""],["Security Head","Kiswa Imran Goraya","“Live life putting Shakespeare to shame.”"]];
-const WEBDEV = ["Web Developer","Anam Bilal",""];
+const TOP = [["Event Head","Fatima Zahra Zuberi","“a very berry blast”"],["Media Head","Dmiyah Fatima","“Too many ideas, too little sleep, and a veto with my name on it.”"],["Publications Head","Aisha Usman","“Little by little, one travels far.” — J.R.R. Tolkien"],["Registrations Head","Israa Rehman","“Darling, have faith in your fire”"],["Security Head","Kiswa Imran Goraya","“Live life putting Shakespeare to shame.”"]];
+const WEBDEV = ["Web Developer","Anam Bilal","“teach my art how to glow”"];
 const CAT_TEAM = [ // people: [role, person, "quote"]
   {name:"The Rhetoric Forum",event:"",people:[["Head","Ayesha Siddiqua Wasti"],["Cohead","Javeria Bilal"]]},
   {name:"Stem Enigma",event:"",people:[["Head","Nabiha Shahid"]]},
