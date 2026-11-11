@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Message Summit: Rebirth of The Phoenix</title>
+<title>The Message Summit</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Jost:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -23,7 +23,6 @@ h1,h2,h3,.serif{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;l
 header{background:rgba(37,52,79,.96);color:var(--tan);text-align:center;border-bottom:3px solid var(--mort)}
 .eyebrow{font-size:.74rem;letter-spacing:.35em;text-transform:uppercase;padding:.7rem 1rem 0;opacity:.85}
 header h1{font-size:clamp(2.4rem,7vw,4.6rem);margin:.1em 0 .05em;letter-spacing:.04em}
-.reb{font:italic 500 clamp(1.3rem,3.5vw,2rem)/1.2 "Cormorant Garamond",serif;color:#e7d6bb;margin:0 0 .4rem;letter-spacing:.08em}
 .sub{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.25rem;margin:0 0 1rem;color:#e7d6bb}
 nav{display:flex;flex-wrap:wrap;justify-content:center;background:rgba(99,32,36,.96)}
 nav a{color:#f1e2c6;text-decoration:none;padding:.85rem 1.5rem;font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;border-bottom:3px solid transparent}
@@ -104,12 +103,11 @@ footer{text-align:center;color:var(--coffee);font-size:.8rem;letter-spacing:.2em
 </head>
 <body>
 
-<div id="splash"><div><p>Welcome to</p><h1>The Message Summit</h1><h2 class="reb">Rebirth of The Phoenix</h2></div></div>
+<div id="splash"><div><p>Welcome to</p><h1>The Message Summit</h1></div></div>
 
 <header>
   <div class="eyebrow">MGS Flagship Event</div>
   <h1>The Message Summit</h1>
-  <div class="reb">Rebirth of The Phoenix</div>
   <p class="sub">“Alis grave nil” – Nothing is heavy for those who have wings</p>
   <nav id="nav">
     <a href="#home" data-p="home">Home</a>
@@ -149,9 +147,9 @@ footer{text-align:center;color:var(--coffee);font-size:.8rem;letter-spacing:.2em
 
   <section id="registrations"><div class="sheet">
     <h2>Registrations</h2><div class="rule" data-leaf></div>
-    <p>Kindly use the button below to open the registration form for Society Fare or for a category. All information provided must be accurate.</p>
+    <p>Kindly use the button below to open the registration form for Society Fair or for a category. All information provided must be accurate.</p>
     <div class="regs">
-      <a class="btn" style="display:inline-block;text-decoration:none" href="https://docs.google.com/forms/d/1-Uhnp6HVXfpsWmlF2IJO5boCKIRikfai8EMr0tIni60/viewform?edit_requested=true" target="_blank" rel="noopener">Society Fare Registration</a>
+      <a class="btn" style="display:inline-block;text-decoration:none" href="https://docs.google.com/forms/d/1-Uhnp6HVXfpsWmlF2IJO5boCKIRikfai8EMr0tIni60/viewform?edit_requested=true" target="_blank" rel="noopener">Society Fair Registration</a>
       <a class="btn" style="display:inline-block;text-decoration:none" href="https://docs.google.com/forms/d/1tpXQBq2NL9e1M112uXHd8Bns20R148KmFjM0s37xzk4/viewform?edit_requested=true" target="_blank" rel="noopener">Category Registration</a>
     </div>
   </div></section>
@@ -161,7 +159,7 @@ footer{text-align:center;color:var(--coffee);font-size:.8rem;letter-spacing:.2em
     <div id="teamroot"></div>
   </div></section>
 </main>
-<footer>&copy; 2026 The Message Summit: Rebirth of The Phoenix &middot; All rights reserved</footer>
+<footer>&copy; 2026 The Message Summit &middot; All rights reserved</footer>
 
 <script>
 /* =================== EDIT THIS SECTION =================== */
@@ -173,20 +171,19 @@ const CATEGORIES = [
   {name:"Corporate Clash", file:"Business", doc:"Corporate_Clash_Guide.pdf"},
   {name:"Stem Digicon", file:"STEM", doc:"STEM_Slot1_Digicon_Guide.pdf", sub:"Slot 1 \u00b7 Study guide (PDF)"},
   {name:"Stem Enigma", file:"STEM", doc:"STEM_Slot2_Enigma_Guide.pdf", sub:"Slot 2 \u00b7 Study guide (PDF)"},
-  {name:"Remnant Upcycle", file:"Community-Service", doc:"Community_Service_Guide.pdf"},
   {name:"Monet\u2019s Minions", file:"Arts", doc:"Art_Categories_Guide.pdf"},
   {name:"The Rhetoric Forum", file:"Debates", doc:"Rhetoric_Forum_Guide.pdf"}
 ];
-// Team: [role, person's name, "quote"]  -- put each head's quote between the last pair of quotation marks. Co-heads and the web developer have no quote.
-const TOP = [["Event Head","Fatima Zahra Zuberi",""],["Media Head","Dmiyah Fatima",""],["Publications Head","Aisha Usman",""],["Registrations Head","Israa Rehman",""],["Security Head","Kiswa Imran Goraya",""]];
-const WEBDEV = ["Web Developer","Anam Bilal"];
+// Team: [role, person's name, "quote"]  -- quotes show only for these people; empty "" shows "Quote coming soon".
+const TOP = [["Event Head","Fatima Zahra Zuberi",""],["Media Head","Dmiyah Fatima","“Too many ideas, too little sleep, and a veto with my name on it.”"],["Publications Head","Aisha Usman","“Little by little, one travels far.” — J.R.R. Tolkien"],["Registrations Head","Israa Rehman",""],["Security Head","Kiswa Imran Goraya","“Live life putting Shakespeare to shame.”"]];
+const WEBDEV = ["Web Developer","Anam Bilal",""];
 const CAT_TEAM = [ // people: [role, person, "quote"]
-  {name:"The Rhetoric Forum",event:"",people:[["Head","Ayesha Siddiqua Wasti",""],["Cohead","Javeria Bilal"]]},
-  {name:"Stem Enigma",event:"",people:[["Head","Nabiha Shahid",""]]},
-  {name:"Stem Digicon",event:"",people:[["Head","Zinnur Junaid",""]]},
-  {name:"Remnant Upcycle",event:"",people:[["Head","Mumaiza Khalid",""],["Cohead","Aena Waqas"]]},
-  {name:"Corporate Clash",event:"",people:[["Head","Sherbano Raza",""],["Cohead","Aileen Chaudary"]]},
-  {name:"Monet\u2019s Minions",event:"",people:[["Head","Eshaal Ali",""]]}
+  {name:"The Rhetoric Forum",event:"",people:[["Head","Ayesha Siddiqua Wasti"],["Cohead","Javeria Bilal"]]},
+  {name:"Stem Enigma",event:"",people:[["Head","Nabiha Shahid"]]},
+  {name:"Stem Digicon",event:"",people:[["Head","Zinnur Junaid"]]},
+  {name:"Remnant Upcycle",event:"",people:[["Head","Mumaiza Khalid"],["Cohead","Aena Waqas"]]},
+  {name:"Corporate Clash",event:"",people:[["Head","Sherbano Raza"],["Cohead","Aileen Chaudary"]]},
+  {name:"Monet\u2019s Minions",event:"",people:[["Head","Eshaal Ali"]]}
 ];
 /* ========================================================== */
 
@@ -261,13 +258,13 @@ $("#catgrid").innerHTML=CATEGORIES.map(c=>c.doc?`<a class="tile" data-doc="${c.d
 document.querySelectorAll("a.tile[data-doc]").forEach(async a=>{for(const p of ["","guides/","Guides/"]){try{const r=await fetch(p+a.dataset.doc,{method:"HEAD"});if(r.ok){a.href=p+a.dataset.doc;return}}catch(e){}}});
 
 /* team */
-const card=(role,name,q,cls="")=>`<div class="person ${cls}"><b>${name}</b><small>${role}</small>${q===undefined?"":q?`<span class="quote">\u201c${q}\u201d</span>`:`<span class="quote empty">Quote coming soon</span>`}</div>`;
+const card=(role,name,q,cls="")=>`<div class="person ${cls}"><b>${name}</b><small>${role}</small>${q===undefined?"":q?`<span class="quote">${q}</span>`:`<span class="quote empty">Quote coming soon</span>`}</div>`;
 $("#teamroot").innerHTML=
   card(TOP[0][0],TOP[0][1],TOP[0][2],"big")+
   `<div class="tgrid">${TOP.slice(1).map(t=>card(t[0],t[1],t[2])).join("")}</div>`+
   `<h3 class="th">Category Heads</h3>`+
   `<div class="cgrid">`+CAT_TEAM.map((c,i)=>`<div class="cg cg${i%3}${c.people.length<2?" solo":""}"><h4>${c.name}</h4>${c.event?`<p class="ev">${c.event}</p>`:""}<div class="tgrid">${c.people.map(p=>card(p[0],p[1],p[2])).join("")}</div></div>`).join("")+`</div>`+
-  `<h3 class="th">Web Development</h3>`+`<div class="one">${card(WEBDEV[0],WEBDEV[1])}</div>`;
+  `<h3 class="th">IT</h3>`+`<div class="one">${card(WEBDEV[0],WEBDEV[1],WEBDEV[2])}</div>`;
 
 /* study guide document */
 function nxt(im){const i=(+im.dataset.i||0)+1;
