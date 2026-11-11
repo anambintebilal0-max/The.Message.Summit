@@ -44,6 +44,7 @@ section{display:none}section.on{display:block;animation:rise .5s ease}
 .tile:hover{transform:translate(-3px,-3px);filter:brightness(1.25)}
 .tile.soon{opacity:.6}.tile.soon:hover,.tile.static:hover{transform:none;filter:none}
 .tile b{display:block;font:700 1.55rem "Cormorant Garamond",serif;color:var(--tan)}
+.tile em{display:block;margin-top:.5rem;font-size:.85rem;color:#e7d6bb}
 .tile span{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase}
 details{border-top:1px solid rgba(111,77,56,.5);padding:.2rem 0}
 details:last-child{border-bottom:1px solid rgba(111,77,56,.5)}
@@ -153,6 +154,15 @@ footer{text-align:center;color:var(--coffee);font-size:.8rem;letter-spacing:.2em
       <a class="btn" style="display:inline-block;text-decoration:none" href="https://docs.google.com/forms/d/1-Uhnp6HVXfpsWmlF2IJO5boCKIRikfai8EMr0tIni60/viewform?edit_requested=true" target="_blank" rel="noopener">Society Fair Registration</a>
       <a class="btn" style="display:inline-block;text-decoration:none" href="https://docs.google.com/forms/d/1tpXQBq2NL9e1M112uXHd8Bns20R148KmFjM0s37xzk4/viewform?edit_requested=true" target="_blank" rel="noopener">Category Registration</a>
     </div>
+    <h3 class="th">Society Submissions</h3>
+    <p>Open the form for your society below. Please submit before the deadline shown.</p>
+    <div class="grid">
+      <a class="tile" href="https://docs.google.com/forms/d/e/1FAIpQLSfKdcDmmWsBZRkPn_K82DUYJt4UlrQ1bvTEg1IcmETkJklYxg/viewform?usp=sharing&amp;ouid=115010323599606008045" target="_blank" rel="noopener"><b>Arts Society</b><span>Gallery Submission</span><em>Deadline: 20th November</em></a>
+      <a class="tile" href="https://docs.google.com/forms/d/e/1FAIpQLSdN74xvOAZAlUlLjD-GxscjdXLeWQPsRgxtElCO1DhdY-JZMg/viewform?usp=publish-editor" target="_blank" rel="noopener"><b>Community Service Society</b><span>Remnant Upcycle</span><em>Deadline: 16th November</em></a>
+      <a class="tile" href="https://docs.google.com/forms/d/e/1FAIpQLSeQjCt99bIi7ar-bGgRSRl4SDMnQLhJXXZfI74QJpChwEQ4SA/viewform?usp=publish-editor" target="_blank" rel="noopener"><b>Literary Society</b><span>Submission</span><em>Deadline: 12th November</em></a>
+      <a class="tile" href="https://forms.gle/PrWrEQih8GfUqu386" target="_blank" rel="noopener"><b>STEM Society</b><span>Extension Module</span><em>Deadline: 12th November</em></a>
+      <a class="tile" href="https://docs.google.com/forms/d/e/1FAIpQLSdbAjfvu6Pi9rPqnW7JfvGS2Uep-VL8SjBy7VFek_o3JYONqg/viewform?usp=publish-editor" target="_blank" rel="noopener"><b>Dramatics Society</b><span>Drama</span><em>Deadline: 12th November</em></a>
+    </div>
   </div></section>
 
   <section id="team"><div class="sheet">
@@ -170,8 +180,8 @@ const MAX_PAGES = 10;   // pages per study guide (shown as a document, page 1 to
 // "file" = the start of the image name, e.g. images/Dramatics.page-1.png ... Dramatics.page-10.png
 const CATEGORIES = [
   {name:"Corporate Clash", file:"Business", doc:"Corporate_Clash_Guide.pdf"},
-  {name:"Stem Digicon", file:"STEM", doc:"STEM_Slot1_Digicon_Guide.pdf", sub:"Slot 1 \u00b7 Study guide (PDF)"},
-  {name:"Stem Enigma", file:"STEM", doc:"STEM_Slot2_Enigma_Guide.pdf", sub:"Slot 2 \u00b7 Study guide (PDF)"},
+  {name:"Stem Digicon", file:"STEM", doc:"STEM_Slot1_Digicon_Guide.pdf"},
+  {name:"Stem Enigma", file:"STEM", doc:"STEM_Slot2_Enigma_Guide.pdf"},
   {name:"The Lit List", file:"Literature", doc:"Summit_Literary_Study_Guide.pdf"},
   {name:"Remnant Upcycle", file:"Community-Service", doc:"Community_Service_Guide.pdf"},
   {name:"Monet\u2019s Minions", file:"Arts", doc:"Art_Categories_Guide.pdf"},
