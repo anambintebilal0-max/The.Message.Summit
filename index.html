@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Message Summit</title>
+<title>The Message Summit: Rebirth of The Phoenix</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Jost:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -23,6 +23,7 @@ h1,h2,h3,.serif{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;l
 header{background:rgba(37,52,79,.96);color:var(--tan);text-align:center;border-bottom:3px solid var(--mort)}
 .eyebrow{font-size:.74rem;letter-spacing:.35em;text-transform:uppercase;padding:.7rem 1rem 0;opacity:.85}
 header h1{font-size:clamp(2.4rem,7vw,4.6rem);margin:.1em 0 .05em;letter-spacing:.04em}
+.reb{font:italic 500 clamp(1.3rem,3.5vw,2rem)/1.2 "Cormorant Garamond",serif;color:#e7d6bb;margin:0 0 .4rem;letter-spacing:.08em}
 .sub{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.25rem;margin:0 0 1rem;color:#e7d6bb}
 nav{display:flex;flex-wrap:wrap;justify-content:center;background:rgba(99,32,36,.96)}
 nav a{color:#f1e2c6;text-decoration:none;padding:.85rem 1.5rem;font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;border-bottom:3px solid transparent}
@@ -49,7 +50,7 @@ details{border-top:1px solid rgba(111,77,56,.5);padding:.2rem 0}
 details:last-child{border-bottom:1px solid rgba(111,77,56,.5)}
 summary{font:700 1.4rem "Cormorant Garamond",serif;color:var(--cadet);padding:.55rem 0;list-style:none}
 summary::-webkit-details-marker{display:none}
-details ul{margin:.1rem 0 1rem;padding-left:1.3rem}details li{margin:.25rem 0}
+details ul,details ol{margin:.1rem 0 1rem;padding-left:1.4rem}details>p{margin:.3rem 0 .8rem}details ol>li{margin:.5rem 0}details li{margin:.25rem 0}
 a.back{display:inline-block;color:var(--mort);margin-bottom:1rem;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase}
 .doc{background:rgba(37,52,79,.35);padding:1.5rem;display:flex;flex-direction:column;align-items:center;gap:1.6rem;border:1px solid var(--coffee)}
 .dp{margin:0;width:min(100%,680px);background:#fbf6ea;box-shadow:0 6px 18px rgba(0,0,0,.35)}
@@ -59,6 +60,7 @@ a.back{display:inline-block;color:var(--mort);margin-bottom:1rem;font-size:.8rem
 .dp figcaption{text-align:center;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;padding:.45rem;color:var(--coffee)}
 .btn{background:var(--cadet);color:var(--tan);border:0;padding:.7rem 1.6rem;font:500 .8rem "Jost";letter-spacing:.2em;text-transform:uppercase}
 .btn:hover{background:var(--mort)}
+.regs{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.6rem}
 .note{text-align:center;padding:2.5rem 1rem;border:1px dashed var(--coffee)}
 code{background:rgba(37,52,79,.12);padding:.1em .4em}
 /* forms */
@@ -67,19 +69,17 @@ label{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(-
 input,select,textarea{width:100%;margin-top:.3rem;padding:.7rem;border:1px solid var(--coffee);background:#fbf6ea;font:inherit}
 #msg{margin-top:1rem;color:var(--mort);font-style:italic}
 /* team */
-.photo{position:relative;width:150px;aspect-ratio:3/4;margin:0 auto .9rem;background:rgba(0,0,0,.18);border:3px solid var(--tan);display:grid;place-items:center;color:var(--tan);overflow:hidden}
-.photo svg{width:34px;height:34px;opacity:.7}.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .person{text-align:center;padding:1.4rem 1rem;color:var(--tan);background:var(--cadet);border-bottom:5px solid var(--tan)}
 .person b{display:block;font:700 1.45rem "Cormorant Garamond",serif}
+.quote{display:block;margin:.7rem auto 0;max-width:30ch;font:italic 500 1.05rem/1.4 "Cormorant Garamond",serif;color:#f1e2c6}
+.quote.empty{opacity:.55}
 .person small{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:#f1e2c6}
 .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.2rem;margin-top:1.4rem}
 .tgrid .person:nth-child(3n+2){background:var(--coffee)}.tgrid .person:nth-child(3n){background:var(--mort)}
 .trow{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.4rem;align-items:stretch}
 .trow .person{flex:1 1 150px;padding:1.2rem .6rem}.trow .person b{font-size:1.2rem}
-.trow .photo{width:min(130px,88%)}
 .trow .person:nth-child(even){background:var(--coffee)}
 .trow .person.lead{flex:1.25 1 190px;background:var(--mort);padding:1.6rem .6rem}
-.trow .lead .photo{width:min(165px,90%)}.trow .lead b{font-size:1.5rem}
 .th{font-size:2rem;color:var(--mort);margin:2.4rem 0 .2rem;border-bottom:2px solid var(--mort)}
 .cg{margin-top:1.4rem}.cg.solo{text-align:center}.cg.solo .tgrid{grid-template-columns:minmax(0,50%);justify-content:center}
 .cg .ev{margin:0;font-style:italic;color:var(--mort);font-size:.95rem}
@@ -89,11 +89,11 @@ input,select,textarea{width:100%;margin-top:.3rem;padding:.7rem;border:1px solid
 @media(min-width:820px){.cg{max-width:calc(50% - .7rem)}}
 .one{display:grid;grid-template-columns:210px;justify-content:center;margin-top:1.2rem}
 .cg .tgrid{margin-top:.5rem;grid-template-columns:1fr 1fr;gap:.7rem}
-.cg .person{padding:1rem .5rem}.cg .person b{font-size:1.2rem}.cg .photo{width:min(120px,85%)}
+.cg .person{padding:1rem .5rem}.cg .person b{font-size:1.2rem}
 .tgrid .person{background:var(--cadet)}
 .cg0 .person{background:var(--cadet)!important}.cg1 .person{background:var(--coffee)!important}.cg2 .person{background:var(--mort)!important}
 .person.web{background:var(--cadet)}
-.person.big{max-width:290px;margin:0 auto;background:var(--mort)}.person.big .photo{width:180px}
+.person.big{max-width:290px;margin:0 auto;background:var(--mort)}
 footer{text-align:center;color:var(--coffee);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;padding:0 1rem 2rem}
 /* splash */
 #splash{position:fixed;inset:0;z-index:99;background:var(--cadet);display:grid;place-items:center;text-align:center;color:var(--tan);transition:opacity 1s,visibility 1s}
@@ -104,12 +104,13 @@ footer{text-align:center;color:var(--coffee);font-size:.8rem;letter-spacing:.2em
 </head>
 <body>
 
-<div id="splash"><div><p>Welcome to</p><h1>The Message Summit</h1></div></div>
+<div id="splash"><div><p>Welcome to</p><h1>The Message Summit</h1><h2 class="reb">Rebirth of The Phoenix</h2></div></div>
 
 <header>
   <div class="eyebrow">MGS Flagship Event</div>
   <h1>The Message Summit</h1>
-  <p class="sub">A gathering of ideas, talent and leadership</p>
+  <div class="reb">Rebirth of The Phoenix</div>
+  <p class="sub">“Alis grave nil” – Nothing is heavy for those who have wings</p>
   <nav id="nav">
     <a href="#home" data-p="home">Home</a>
     <a href="#guidelines" data-p="guidelines">Guidelines</a>
@@ -134,7 +135,6 @@ footer{text-align:center;color:var(--coffee);font-size:.8rem;letter-spacing:.2em
 
   <section id="guidelines"><div class="sheet">
     <h2>Official Policies &amp; Guidelines</h2><div class="rule" data-leaf></div>
-    <p>These policies apply to all participants, delegates, organisers, volunteers, speakers and guests, under the authority of the Message Summit Organising Committee.</p>
     <div id="policy"></div>
   </div></section>
 
@@ -149,8 +149,11 @@ footer{text-align:center;color:var(--coffee);font-size:.8rem;letter-spacing:.2em
 
   <section id="registrations"><div class="sheet">
     <h2>Registrations</h2><div class="rule" data-leaf></div>
-    <p>Kindly use the button below to open the registration form for a bake sale stall or a category. All information provided must be accurate.</p>
-    <p style="margin-top:1.6rem"><a class="btn" style="display:inline-block;text-decoration:none" href="https://docs.google.com/forms/d/1tpXQBq2NL9e1M112uXHd8Bns20R148KmFjM0s37xzk4/viewform?edit_requested=true" target="_blank" rel="noopener">Register Here</a></p>
+    <p>Kindly use the button below to open the registration form for Society Fare or for a category. All information provided must be accurate.</p>
+    <div class="regs">
+      <a class="btn" style="display:inline-block;text-decoration:none" href="https://docs.google.com/forms/d/1-Uhnp6HVXfpsWmlF2IJO5boCKIRikfai8EMr0tIni60/viewform?edit_requested=true" target="_blank" rel="noopener">Society Fare Registration</a>
+      <a class="btn" style="display:inline-block;text-decoration:none" href="https://docs.google.com/forms/d/1tpXQBq2NL9e1M112uXHd8Bns20R148KmFjM0s37xzk4/viewform?edit_requested=true" target="_blank" rel="noopener">Category Registration</a>
+    </div>
   </div></section>
 
   <section id="team"><div class="sheet">
@@ -158,7 +161,7 @@ footer{text-align:center;color:var(--coffee);font-size:.8rem;letter-spacing:.2em
     <div id="teamroot"></div>
   </div></section>
 </main>
-<footer>&copy; 2026 The Message Summit &middot; All rights reserved</footer>
+<footer>&copy; 2026 The Message Summit: Rebirth of The Phoenix &middot; All rights reserved</footer>
 
 <script>
 /* =================== EDIT THIS SECTION =================== */
@@ -174,49 +177,97 @@ const CATEGORIES = [
   {name:"Monet\u2019s Minions", file:"Arts", doc:"Art_Categories_Guide.pdf"},
   {name:"The Rhetoric Forum", file:"Debates", doc:"Rhetoric_Forum_Guide.pdf"}
 ];
-// Team: [role, photo file name (images/<name>.png), person's name]
-const TOP = [["Event Head","Eventhead","Fatima Zahra Zuberi"],["Media Head","Mediahead","Dmiyah Fatima"],["Publications Head","Publicationhead","Aisha Usman"],["Registrations Head","Registrationhead","Israa Rehman"],["Security Head","Securityhead","Kiswa Imran Goraya"]];
-const WEBDEV = ["Web Developer","Webdeveloper","Anam Bilal"];
-const CAT_TEAM = [ // people: [role, photo name (images/<name>.png), person]
-  {name:"The Rhetoric Forum",event:"",people:[["Head","Debates-Head","Ayesha Siddiqua Wasti"],["Cohead","Debates-Cohead","Javeria Bilal"]]},
-  {name:"Stem Enigma and Stem Digicon",event:"",people:[["Enigma Head","STEM-Enigma-Head","Nabiha Shahid"],["Digicon Head","STEM-Digicon-Head","Zinnur Junaid"]]},
-  {name:"Remnant Upcycle",event:"",people:[["Head","Community-Service-Head","Mumaiza Khalid"],["Cohead","Community-Service-Cohead","Aena Waqas"]]},
-  {name:"Corporate Clash",event:"",people:[["Head","Business-Head","Sherbano Raza"],["Cohead","Business-Cohead","Aileen Chaudary"]]},
-  {name:"Monet\u2019s Minions",event:"",people:[["Head","Arts-Head","Eshaal Ali"]]}
+// Team: [role, person's name, "quote"]  -- put each head's quote between the last pair of quotation marks. Co-heads and the web developer have no quote.
+const TOP = [["Event Head","Fatima Zahra Zuberi",""],["Media Head","Dmiyah Fatima",""],["Publications Head","Aisha Usman",""],["Registrations Head","Israa Rehman",""],["Security Head","Kiswa Imran Goraya",""]];
+const WEBDEV = ["Web Developer","Anam Bilal"];
+const CAT_TEAM = [ // people: [role, person, "quote"]
+  {name:"The Rhetoric Forum",event:"",people:[["Head","Ayesha Siddiqua Wasti",""],["Cohead","Javeria Bilal"]]},
+  {name:"Stem Enigma",event:"",people:[["Head","Nabiha Shahid",""]]},
+  {name:"Stem Digicon",event:"",people:[["Head","Zinnur Junaid",""]]},
+  {name:"Remnant Upcycle",event:"",people:[["Head","Mumaiza Khalid",""],["Cohead","Aena Waqas"]]},
+  {name:"Corporate Clash",event:"",people:[["Head","Sherbano Raza",""],["Cohead","Aileen Chaudary"]]},
+  {name:"Monet\u2019s Minions",event:"",people:[["Head","Eshaal Ali",""]]}
 ];
 /* ========================================================== */
 
 const POLICY = [
-["Purpose and Objectives",["The Message Summit is a student-centred event designed to encourage intellectual exchange, collaboration, leadership, creativity and constructive engagement.","It provides students with an inclusive platform to share ideas, develop skills, engage in meaningful discussions and collaborate across disciplines.","All individuals associated with the event are expected to uphold respect, integrity, responsibility and professionalism."]],
-["General Code of Conduct",["Treat fellow students, faculty members, guests and organisers with respect and courtesy.","Maintain professional and appropriate conduct throughout the event.","Respect differing opinions, perspectives and backgrounds.","Refrain from bullying, harassment, discrimination, intimidation or disruptive behaviour.","Follow instructions issued by authorised organisers and faculty supervisors.","Respect the venue, facilities, equipment and resources.","Maintain academic honesty and refrain from plagiarism or misrepresentation.","Any conduct that compromises the safety, dignity or experience of others will be addressed by the Organising Committee."]],
-["Registration and Participation",["All participants must complete the designated registration process and provide accurate information.","Credentials, badges or identification must be worn or displayed where required.","Registration does not guarantee participation in activities with limited capacity.","Participants must adhere to their assigned schedules, sessions and activities.","Unauthorised transfers of registrations or credentials are prohibited.","Participants must notify the organising team of cancellations or changes in attendance."]],
-["Attendance and Punctuality",["Participants are expected to arrive before the commencement of their scheduled sessions.","Attendance may be recorded for individual sessions.","Late arrivals may be restricted from entering certain sessions to avoid disruption.","Participants must remain present for the duration of a session unless authorised to leave.","Absences should be communicated to the relevant organising representative."]],
-["Session and Activity Guidelines",["Participants must follow the rules specific to each session, competition or activity.","Speakers and presenters must adhere to their allocated time limits.","Questions and discussions must remain relevant and respectful.","Participants must not interrupt speakers or deliberately disrupt proceedings.","Electronic devices must not interfere with presentations or activities.","Materials submitted for competitions or presentations must be original unless otherwise specified."]],
-["Organising Committee and Volunteers",["Perform assigned responsibilities diligently and communicate respectfully.","Maintain confidentiality regarding internal discussions and sensitive participant information.","Avoid favouritism, discrimination and conflicts of interest.","Report operational, disciplinary or safety concerns to the appropriate supervisor.","Refrain from misusing organisational authority.","Represent the Message Summit responsibly in both physical and digital spaces.","Organisers are accountable for fairness, transparency and consistency in the execution of event policies."]],
-["Safety and Security",["All participants must comply with venue safety regulations.","Restricted areas must not be accessed without permission.","Emergency exits, pathways and access points must remain unobstructed.","Damaging, removing or interfering with event equipment is prohibited.","Any accident, injury, suspicious activity or safety concern must be reported immediately to an event supervisor.","Participants must follow instructions during emergencies and evacuations.","Visitors and guests must comply with the venue's access and supervision requirements."]],
-["Photography, Media and Privacy",["Official photography and videography may take place for documentation and promotional purposes.","Participants must respect the privacy and consent of others when recording or photographing them.","Private conversations, personal information and confidential materials must not be recorded or distributed without permission.","Official event media must not be manipulated or presented in a misleading manner.","Media-related concerns should be communicated to the organising team."]],
-["Dress Code and Presentation",["Participants are expected to dress appropriately for an academic and professional student event.","Clothing must comply with the host institution's dress code.","Presenters and representatives should maintain a professional standard of appearance.","Any additional dress requirements for specific activities will be communicated in advance."]],
-["Disciplinary Procedures",["Violations may result in disciplinary action depending on their nature and severity. Possible measures include: a verbal warning; a formal written warning; removal from a session or activity; disqualification from a competition or activity; removal from the event; and referral to the relevant school or institutional authority.","All reported incidents will be reviewed fairly and confidentially. Where appropriate, participants will have an opportunity to explain their position before a decision is made.","Serious safety concerns may require immediate protective action."]],
-["Complaints and Reporting",["Participants may report concerns involving misconduct, unfair treatment, harassment, safety violations or organisational issues.","Concerns should be directed to an authorised member of the Organising Committee or a faculty supervisor.","Reports will be handled with discretion.","Retaliation against individuals who raise concerns in good faith is prohibited.","The organising team will make reasonable efforts to investigate and resolve reported issues."]],
-["Amendments and Policy Enforcement",["The Organising Committee reserves the right to amend these policies when necessary.","Amendments will be communicated through official event channels.","Participation in the Message Summit signifies acknowledgement of, and agreement to comply with, the applicable policies."]]
+ [
+  "Code of Conduct",
+  [
+   {
+    "p": "By registering for The Message Summit, you agree to uphold a standard of respectful, responsible, and ethical behavior throughout the event."
+   },
+   {
+    "ol": [
+     [
+      "<b>Mandatory Attendance:</b> Participants must attend all compulsory rounds and activities of the categories they are registered in. Failure to do so may result in disqualification or penalties."
+     ],
+     [
+      "<b>Prohibited Behaviors:</b> The following are strictly forbidden and may lead to expulsion or disqualification at the discretion of the management:",
+      [
+       "<b>Harassment:</b> unwelcome verbal, written, or physical conduct that creates an intimidating or hostile environment.",
+       "<b>Discrimination:</b> unfair treatment based on identity or background.",
+       "<b>Bullying or Intimidation:</b> repeated negative behavior or threats that cause harm or fear.",
+       "<b>Unfair Practices:</b> plagiarism, sabotage, bias, or any attempt to gain an unfair advantage.",
+       "<b>Arguments with judges or management:</b> all decisions are final and non-negotiable.",
+       "<b>Vandalism or Trespassing:</b> damaging property or entering restricted areas. Any damages must be compensated in full.",
+       "<b>Substances:</b> The possession or use of intoxicants (cigarettes, vapes, pods, and/or any other illicit material) is strictly prohibited. Failure to do so will result in immediate exclusion from the event."
+      ]
+     ]
+    ]
+   },
+   {
+    "p": "Each participant attends Summit at their own risk and is fully responsible for their actions, behavior, safety, and belongings. Summit Management, Message Grammar School and staff are not liable for personal injury, loss, damage, misconduct by others, or consequences of policy violations."
+   }
+  ]
+ ],
+ [
+  "Uniform Policy",
+  [
+   {
+    "ul": [
+     "<b>Day 0:</b> School Uniform, must be neatly worn, i.e. ironed and well pinned. Showing up in coloured clothes, or untidy uniforms will restrict you from entering.",
+     "<b>Day 1:</b> Participants must dress modestly in coloured clothes. Clothing must cover shoulders, torso, and knees. Those failing to comply will be asked to leave the premises. All girls must leave and enter the school premises with their school abaya and scarf on. If not, you won't be allowed to enter."
+    ]
+   }
+  ]
+ ],
+ [
+  "Media Policy",
+  [
+   {
+    "p": "By registering for The Message Summit, you grant permission to be photographed, filmed, or recorded during the event, and for this content to be used for official promotional purposes. Event content may be shared through Summit’s official social media, or website."
+   },
+   {
+    "p": "We respect participants' privacy. If you prefer not to appear in official media, you may:"
+   },
+   {
+    "ul": [
+     "Inform the official media team during the event so they can avoid capturing you.",
+     "After publication, request that a post or media item featuring you be removed. We will make every reasonable effort to remove the content from our official platforms. However, we cannot guarantee complete removal from all channels, especially where content has already been shared externally."
+    ]
+   }
+  ]
+ ]
 ];
 
 const $=s=>document.querySelector(s);
 const LEAF='<svg viewBox="0 0 32 32"><path d="M4 28C4 12 14 4 28 4C28 18 20 28 4 28Z" fill="currentColor"/></svg>';
 document.querySelectorAll("[data-leaf]").forEach(e=>e.innerHTML=LEAF);
 
-$("#policy").innerHTML=POLICY.map((p,i)=>`<details ${i?"":"open"}><summary>${i+1}. ${p[0]}</summary><ul>${p[1].map(t=>`<li>${t}</li>`).join("")}</ul></details>`).join("");
+const blk=x=>x.p?`<p>${x.p}</p>`:x.ol?`<ol>${x.ol.map(i=>`<li>${i[0]}${i[1]?`<ul>${i[1].map(t=>`<li>${t}</li>`).join("")}</ul>`:""}</li>`).join("")}</ol>`:`<ul>${x.ul.map(t=>`<li>${t}</li>`).join("")}</ul>`;
+$("#policy").innerHTML=POLICY.map((p,i)=>`<details ${i?"":"open"}><summary>${p[0]}</summary>${p[1].map(blk).join("")}</details>`).join("");
 $("#catgrid").innerHTML=CATEGORIES.map(c=>c.doc?`<a class="tile" data-doc="${c.doc}" href="${c.doc}" target="_blank" rel="noopener"><b>${c.name}</b></a>`:`<div class="tile ${c.note?"static":"soon"}"><b>${c.name}</b><span>${c.note||"Coming soon"}</span></div>`).join("");
 document.querySelectorAll("a.tile[data-doc]").forEach(async a=>{for(const p of ["","guides/","Guides/"]){try{const r=await fetch(p+a.dataset.doc,{method:"HEAD"});if(r.ok){a.href=p+a.dataset.doc;return}}catch(e){}}});
 
 /* team */
-const card=(role,file,name,cls="")=>`<div class="person ${cls}"><div class="photo">${LEAF}<img src="${PATHS[0]}${file}.png" data-f="${file}.png" data-m="team" alt="${role}" onerror="nxt(this)"></div><b>${name}</b><small>${role}</small></div>`;
+const card=(role,name,q,cls="")=>`<div class="person ${cls}"><b>${name}</b><small>${role}</small>${q===undefined?"":q?`<span class="quote">\u201c${q}\u201d</span>`:`<span class="quote empty">Quote coming soon</span>`}</div>`;
 $("#teamroot").innerHTML=
   card(TOP[0][0],TOP[0][1],TOP[0][2],"big")+
   `<div class="tgrid">${TOP.slice(1).map(t=>card(t[0],t[1],t[2])).join("")}</div>`+
   `<h3 class="th">Category Heads</h3>`+
   `<div class="cgrid">`+CAT_TEAM.map((c,i)=>`<div class="cg cg${i%3}${c.people.length<2?" solo":""}"><h4>${c.name}</h4>${c.event?`<p class="ev">${c.event}</p>`:""}<div class="tgrid">${c.people.map(p=>card(p[0],p[1],p[2])).join("")}</div></div>`).join("")+`</div>`+
-  `<h3 class="th">Web Development</h3>`+`<div class="one">${card(WEBDEV[0],WEBDEV[1],WEBDEV[2])}</div>`;
+  `<h3 class="th">Web Development</h3>`+`<div class="one">${card(WEBDEV[0],WEBDEV[1])}</div>`;
 
 /* study guide document */
 function nxt(im){const i=(+im.dataset.i||0)+1;
